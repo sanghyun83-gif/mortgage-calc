@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     "refinance calculator",
     "rent vs buy calculator",
   ],
+  verification: {
+    google: "qlPMVO_Hb-be3_hFHNT9SBbsHO-b_wCOfWfLmTb4EQc",
+  },
   openGraph: {
     title: `${SITE.year} Mortgage Calculator | Free`,
     description: "Calculate your monthly mortgage payment for free. Includes taxes, insurance, PMI, and amortization schedule.",
