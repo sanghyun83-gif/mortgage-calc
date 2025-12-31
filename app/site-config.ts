@@ -13,7 +13,7 @@ export const SITE = {
     tagline: "Free 2025 Payment Calculator",
     description: "Calculate your mortgage payment for free. Estimate monthly payments, amortization schedule, and home affordability. Includes PMI and property tax calculations.",
     year: 2025,
-    baseUrl: "https://mortgage-calc.vercel.app",
+    baseUrl: "https://mortgage.mysmartcalculators.com",
 };
 
 // ============================================
@@ -161,8 +161,8 @@ export function calculateMortgage(
     // Calculate monthly Principal & Interest (P&I)
     let monthlyPI = 0;
     if (monthlyRate > 0) {
-        monthlyPI = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
-                    (Math.pow(1 + monthlyRate, numPayments) - 1);
+        monthlyPI = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /
+            (Math.pow(1 + monthlyRate, numPayments) - 1);
     } else {
         monthlyPI = loanAmount / numPayments;
     }
@@ -176,7 +176,7 @@ export function calculateMortgage(
 
     // Calculate PMI if down payment < 20%
     const hasPMI = downPaymentPercent < MORTGAGE_CONSTANTS.pmiThreshold;
-    const monthlyPMI = hasPMI 
+    const monthlyPMI = hasPMI
         ? Math.round((loanAmount * (MORTGAGE_CONSTANTS.defaults.pmiRate / 100)) / 12)
         : 0;
 
@@ -242,8 +242,8 @@ export function generateAmortizationSchedule(
     // Calculate monthly payment
     let monthlyPayment = 0;
     if (monthlyRate > 0) {
-        monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
-                        (Math.pow(1 + monthlyRate, numPayments) - 1);
+        monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /
+            (Math.pow(1 + monthlyRate, numPayments) - 1);
     } else {
         monthlyPayment = loanAmount / numPayments;
     }
@@ -325,7 +325,7 @@ export function calculateAffordability(
     let maxLoanAmount = 0;
     if (monthlyRate > 0) {
         maxLoanAmount = estimatedPI * (Math.pow(1 + monthlyRate, numPayments) - 1) /
-                       (monthlyRate * Math.pow(1 + monthlyRate, numPayments));
+            (monthlyRate * Math.pow(1 + monthlyRate, numPayments));
     }
 
     const maxHomePrice = Math.round(maxLoanAmount + downPayment);
@@ -373,13 +373,13 @@ export function calculateRefinance(
     // Current payment
     const currentMonthlyRate = currentRate / 100 / 12;
     let currentPayment = currentBalance * (currentMonthlyRate * Math.pow(1 + currentMonthlyRate, remainingMonths)) /
-                        (Math.pow(1 + currentMonthlyRate, remainingMonths) - 1);
+        (Math.pow(1 + currentMonthlyRate, remainingMonths) - 1);
 
     // New payment
     const newMonthlyRate = newRate / 100 / 12;
     const newNumPayments = newTermYears * 12;
     let newPayment = currentBalance * (newMonthlyRate * Math.pow(1 + newMonthlyRate, newNumPayments)) /
-                    (Math.pow(1 + newMonthlyRate, newNumPayments) - 1);
+        (Math.pow(1 + newMonthlyRate, newNumPayments) - 1);
 
     currentPayment = Math.round(currentPayment);
     newPayment = Math.round(newPayment);
@@ -429,7 +429,7 @@ export function calculateExtraPayments(
 
     // Calculate base monthly payment
     let monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) /
-                        (Math.pow(1 + monthlyRate, numPayments) - 1);
+        (Math.pow(1 + monthlyRate, numPayments) - 1);
 
     // Calculate original total interest
     const totalPaymentsOriginal = monthlyPayment * numPayments;
@@ -510,8 +510,8 @@ export function calculateRentVsBuy(
         yearsToBreakEven = Math.round((downPayment / (monthlyRent * 12 * (homeAppreciation / 100))) * 10) / 10;
     }
 
-    const recommendation = fiveYearCostBuy < totalRent ? 'buy' : 
-                          fiveYearCostBuy > totalRent * 1.1 ? 'rent' : 'similar';
+    const recommendation = fiveYearCostBuy < totalRent ? 'buy' :
+        fiveYearCostBuy > totalRent * 1.1 ? 'rent' : 'similar';
 
     return {
         monthlyRent,
